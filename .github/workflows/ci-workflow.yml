@@ -26,7 +26,7 @@ jobs:
 
       - name: TestifyAI Agent
         id: test-action
-        uses: khanzzirfan/TestAI-Agent@v0.1.4
+        uses: khanzzirfan/TestAI-Agent@v0.1.5
         with:
           milliseconds: 1000
         ## env
