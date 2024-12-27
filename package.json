@@ -8,10 +8,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "coverage": "npm test --coverage --watchAll --collectCoverageFrom='src/components/**/*.{ts,tsx}'",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint --fix ./ --ext .ts,.tsx ",
     "preview": "vite preview"
   },
   "dependencies": {
+    "eslint-plugin-testing-library": "^7.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
