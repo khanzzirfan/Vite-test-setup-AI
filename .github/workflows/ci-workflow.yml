@@ -33,6 +33,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   publish-gpr:
     needs: build
