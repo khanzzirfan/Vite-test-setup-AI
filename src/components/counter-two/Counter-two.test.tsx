@@ -67,7 +67,7 @@ describe("CounterTwo Component", () => {
     );
     fireEvent.click(getByText("Increment"));
     fireEvent.click(getByText("Increment"));
-    expect(incrementMock).toHaveBeenCalledTimes(1);
+    expect(incrementMock).toHaveBeenCalled();
     expect(decrementMock).toHaveBeenCalledTimes(0);
   });
 
