@@ -29,6 +29,10 @@ jobs:
         uses: khanzzirfan/TestAI-Agent@v0.1.4
         with:
           milliseconds: 1000
+        ## env
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
 
   publish-gpr:
     needs: build
