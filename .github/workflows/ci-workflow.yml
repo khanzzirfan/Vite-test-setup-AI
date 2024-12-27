@@ -24,6 +24,12 @@ jobs:
       - run: npm ci
       - run: npm test
 
+      - name: TestifyAI Agent
+        id: test-action
+        uses: ./
+        with:
+          milliseconds: 1000
+
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
