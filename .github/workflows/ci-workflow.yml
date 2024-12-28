@@ -26,12 +26,13 @@ jobs:
 
       - name: TestifyAI Agent
         id: test-action
-        uses: khanzzirfan/TestAI-Agent@v0.1.6
+        uses: khanzzirfan/TestAI-Agent@v0.1.7
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
 
   publish-gpr:
     needs: build
