@@ -1,11 +1,17 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
-name: Node.js Package
+name: CI Workflow
 
 on:
   release:
     types: [created]
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -17,6 +23,16 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm test
+
+      - name: TestifyAI Agent
+        id: test-action
+        uses: khanzzirfan/TestAI-Agent@v0.1.7
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
 
   publish-gpr:
     needs: build
