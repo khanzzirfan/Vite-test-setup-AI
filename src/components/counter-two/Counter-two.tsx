@@ -11,7 +11,7 @@ function CounterTwo({
 }: CounterTwoProps) {
   return (
     <div>
-      <h1>Counter Two</h1>
+      <h2>Counter Two</h2>
       <h3>{count}</h3>
       <button onClick={() => incrementCount(count + 1)}>Increment</button>
       <button onClick={() => decrementCount(count - 1)}>Decrement</button>
