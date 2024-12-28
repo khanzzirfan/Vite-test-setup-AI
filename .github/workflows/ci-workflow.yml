@@ -36,6 +36,7 @@ jobs:
           LANGCHAIN_TRACING_V2: true
           LANGCHAIN_ENDPOINT: "https://api.smith.langchain.com"
           LANGCHAIN_PROJECT: "jest-test"
+          LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
 
   publish-gpr:
     needs: build
