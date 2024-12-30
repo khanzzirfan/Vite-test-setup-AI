@@ -24,6 +24,9 @@ jobs:
       - run: npm ci
       - run: npm test
 
+      - name: list files
+        run: ls -al
+
       - name: TestifyAI Agent
         id: test-action
         uses: khanzzirfan/TestAI-Agent@v0.1.12
