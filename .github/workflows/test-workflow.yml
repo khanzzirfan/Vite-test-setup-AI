@@ -26,7 +26,7 @@ jobs:
 
       - name: TestifyAI Agent
         id: test-action
-        uses: khanzzirfan/TestAI-Agent@v0.1.17
+        uses: khanzzirfan/TestAI-Agent@v0.1.18
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file_name: ${{ github.event.inputs.file_name }}
