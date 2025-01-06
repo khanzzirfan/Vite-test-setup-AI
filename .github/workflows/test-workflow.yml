@@ -1,17 +1,14 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
-name: CI Workflow
+name: Test Workflow
 
 on:
-  release:
-    types: [created]
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      file_name:
+        description: "The name of the file to process"
+        required: true
 
 jobs:
   build:
@@ -32,7 +29,7 @@ jobs:
         uses: khanzzirfan/TestAI-Agent@v0.1.16
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file_name: "User.tsx"
+          file_name: ${{ github.event.inputs.file_name }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
@@ -41,20 +38,3 @@ jobs:
           LANGCHAIN_ENDPOINT: "https://api.smith.langchain.com"
           LANGCHAIN_PROJECT: "jest-test"
           LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
