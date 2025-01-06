@@ -1,0 +1,40 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Test Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      file_name:
+        description: "The name of the file to process"
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test
+
+      - name: list files
+        run: ls -al
+
+      - name: TestifyAI Agent
+        id: test-action
+        uses: khanzzirfan/TestAI-Agent@v0.1.16
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file_name: ${{ github.event.inputs.file_name }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          LANGCHAIN_TRACING_V2: true
+          LANGCHAIN_ENDPOINT: "https://api.smith.langchain.com"
+          LANGCHAIN_PROJECT: "jest-test"
+          LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
