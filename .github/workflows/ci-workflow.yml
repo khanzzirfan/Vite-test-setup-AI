@@ -32,6 +32,7 @@ jobs:
         uses: khanzzirfan/TestAI-Agent@v0.1.15
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file_name: "User.tsx"
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
