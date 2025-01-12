@@ -28,7 +28,7 @@ jobs:
         run: ls -al
 
       - name: TestifyAI Agent
-        id: test-action
+        id: test-action2
         uses: khanzzirfan/TestAI-Agent@v0.1.20
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
