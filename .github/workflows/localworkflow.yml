@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: npm ci
       # - run: npm test
 
@@ -29,10 +29,10 @@ jobs:
 
       - name: TestifyAI Agent
         id: test-action
-        uses: khanzzirfan/TestAI-Agent@v0.1.41-alpha.4
+        uses: khanzzirfan/TestAI-Agent@v0.1.54-alpha.11
         with:
           repo_token: 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
-          file_name: Users.tsx
+          file_name: App.tsx
         env:
           OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
           TAVILY_API_KEY: ${{ env.TAVILY_API_KEY }}
