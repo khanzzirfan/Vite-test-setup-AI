@@ -29,7 +29,7 @@ jobs:
 
       - name: TestifyAI Agent
         id: test-action2
-        uses: khanzzirfan/TestAI-Agent@v0.1.54-alpha.13
+        uses: khanzzirfan/TestAI-Agent@v0.1.54-alpha.20
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file_name: "App.tsx"
