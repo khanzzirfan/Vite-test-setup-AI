@@ -41,10 +41,6 @@ jobs:
           LANGCHAIN_PROJECT: "jest-test"
           LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
 
-      - name: print final comments
-        run: |
-          printf "Final comments: %s\n" "${{ steps.test-action.outputs.final_comments }}"
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
