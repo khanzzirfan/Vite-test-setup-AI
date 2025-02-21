@@ -23,4 +23,10 @@ describe("User", () => {
     render(<Users />);
     expect(screen.getByRole("list")).toBeInTheDocument();
   });
+
+  test("does not render unexpected elements", async () => {
+    render(<Users />);
+    const unexpectedElement = screen.queryByText("unexpected");
+    expect(unexpectedElement).not.toBeInTheDocument();
+  });
 });
