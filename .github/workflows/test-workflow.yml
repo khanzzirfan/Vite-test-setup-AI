@@ -41,6 +41,12 @@ jobs:
           LANGCHAIN_PROJECT: "jest-test"
           LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
 
+      - name: print final comments
+        if: false
+        id: pr-comments
+        run: |
+          echo ${{ steps.test-action.outputs.final_comments }}
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
@@ -48,6 +54,7 @@ jobs:
           branch: updated-tests
           title: "Updated Tests"
           body: |
-            AI generated test cases have been added. Test results: ${{ needs.test-action.outputs.final_comments }}
+            AI generated test cases have been added. Test results: 
+              ${{ steps.test-action.outputs.final_comments }}
           labels: "automated pr"
           base: main
