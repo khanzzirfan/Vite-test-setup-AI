@@ -12,15 +12,4 @@ describe("User", () => {
     const users = await screen.findAllByRole("listitem");
     expect(users).toHaveLength(2);
   });
-
-  test("renders specific user names", async () => {
-    render(<Users />);
-    expect(screen.getByText("name 1")).toBeInTheDocument();
-    expect(screen.getByText("name 2")).toBeInTheDocument();
-  });
-
-  test("renders correct HTML structure", async () => {
-    render(<Users />);
-    expect(screen.getByRole("list")).toBeInTheDocument();
-  });
 });
