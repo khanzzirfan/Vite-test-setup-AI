@@ -41,3 +41,15 @@ jobs:
           LANGCHAIN_ENDPOINT: "https://api.smith.langchain.com"
           LANGCHAIN_PROJECT: "jest-test"
           LANGCHAIN_API_KEY: ${{ env.LANGCHAIN_API_KEY }}
+        outputs:
+          final_comments: ${{ steps.test-action.outputs.final_comments }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ env.GH_TOKEN }}
+          branch: update-locales
+          title: "Update Localization Files"
+          body: "AI generated test cases have been added. Test results: ${{ needs.test-action.outputs.final_comments }}"
+          labels: "automated pr"
+          base: main
