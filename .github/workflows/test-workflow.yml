@@ -13,6 +13,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      final_comments: ${{ steps.test-action.outputs.final_comments }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -38,3 +40,17 @@ jobs:
           LANGCHAIN_ENDPOINT: "https://api.smith.langchain.com"
           LANGCHAIN_PROJECT: "jest-test"
           LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
+
+      - name: print final comments
+        run: |
+          echo "Final comments: ${{ steps.test-action.outputs.final_comments }}"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: updated-tests
+          title: "Updated Tests"
+          body: "AI generated test cases have been added. Test results: ${{ needs.test-action.outputs.final_comments }}"
+          labels: "automated pr"
+          base: main
