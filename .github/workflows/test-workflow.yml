@@ -43,7 +43,7 @@ jobs:
 
       - name: print final comments
         run: |
-          echo "Final comments: ${{ steps.test-action.outputs.final_comments }}"
+          printf "Final comments: %s\n" "${{ steps.test-action.outputs.final_comments }}"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
@@ -51,6 +51,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: updated-tests
           title: "Updated Tests"
-          body: "AI generated test cases have been added. Test results: ${{ needs.test-action.outputs.final_comments }}"
+          body: |
+            AI generated test cases have been added. Test results:
+            ${{ needs.test-action.outputs.final_comments }}
           labels: "automated pr"
           base: main
