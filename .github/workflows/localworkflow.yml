@@ -52,8 +52,8 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: update-locales
-          title: "Update Localization Files"
+          branch: updated-tests
+          title: "Updated Tests"
           body: "AI generated test cases have been added. Test results: ${{ needs.test-action.outputs.final_comments }}"
           labels: "automated pr"
           base: main
