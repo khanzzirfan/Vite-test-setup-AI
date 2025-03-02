@@ -9,6 +9,13 @@ on:
       file_name:
         description: "The name of the file to process"
         required: true
+      recursion_limit:
+        description: "The recursion limit for the agent"
+        required: true
+        default: "100"
+      additional_prompt:
+        description: "Additional prompt to be used for the agent"
+        required: false
 
 jobs:
   build:
@@ -32,6 +39,8 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file_name: ${{ github.event.inputs.file_name }}
+          recursion_limit: ${{ github.event.inputs.recursion_limit }}
+          additional_prompt: ${{ github.event.inputs.additional_prompt }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
